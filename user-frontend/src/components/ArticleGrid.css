@@ -1,0 +1,6 @@
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    grid-template-rows: 400px;
+    gap: 25px;
+}

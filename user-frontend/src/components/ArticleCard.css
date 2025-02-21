@@ -1,0 +1,13 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
+    border-radius: 5px;
+    .card-title {
+        font-weight: bold;
+        color: black;
+    }
+    .card-content {
+        font-size: .75rem;
+    }
+}
