@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req,res)=>{
     res.send('home');
 })
+
 app.use(cors());
 app.use('/users', routes.userRouter);
 app.use('/posts', routes.postRouter);
