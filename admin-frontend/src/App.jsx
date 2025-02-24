@@ -1,40 +1,37 @@
-import { useState } from 'react'
-import Home from './pages/Home';
-const BASEURL = 'http://localhost:3000';
+import {
+  Routes,
+  Route,
+  Link
+} from "react-router";
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
+
+function Navbar() {
+  return (
+    <nav>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/register">Register</Link></li>
+
+      </ul>
+    </nav>
+  )
+}
+
 
 function App() {
-  const [body, setBody] = useState({
-    title: '',
-    content: ''
-  });
-
-  const postLogin = async (e) => {
-    e.preventDefault();
-
-    console.log('body frontend', JSON.stringify(body));
-    const response = await fetch(`${BASEURL}/posts`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body)
-    });
-
-    const formatted = await response.json();
-    return formatted;
-  };
-
-  const handleChange = (e) => {
-    setBody({
-      ...body,
-      [e.target.name]: e.target.value
-    });
-  };
 
   return (
-    <>
-      <Home />
-    </>
+   <div>
+    <Navbar/>
+     <Routes>
+      <Route index element={ < Home /> }/>
+      <Route path="login" element={ < Login /> } />
+      <Route path="register" element={ < Register /> } />
+    </Routes>
+   </div>
   )
 }
 
