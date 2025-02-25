@@ -1,17 +1,10 @@
-import { useState, useEffect } from "react"
+import Grid from "../components/Grid";
 
-export default function App() {
-
-        const [posts, setPosts] = useState([]);
-
-    useEffect(()=>{
-        const fetchPosts = () => {
-            
-        };
-        fetchPosts();
-    },[])
-
+export default function App( {posts} ) {
     return (
-        <h1>Posts</h1>
+        <>
+            <h1>Posts</h1>
+            <Grid posts={posts} />
+        </>
     )
 }
