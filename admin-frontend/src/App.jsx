@@ -6,8 +6,10 @@ import {
 import { useState, useEffect } from "react";
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Register from './pages/Register'
-import Post from "./components/Post";
+import UserRegister from './pages/UserRegister'
+import PostEdit from "./pages/PostEdit"
+import PostCreate from "./pages/PostCreate"
+const baseurl = import.meta.env.VITE_BASE_URL // API base url
 
 function Navbar() {
   return (
@@ -16,6 +18,7 @@ function Navbar() {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/login">Login</Link></li>
         <li><Link to="/register">Register</Link></li>
+        <li><Link to="/posts/create">Create Post</Link></li>
       </ul>
     </nav>
   )
@@ -27,13 +30,24 @@ function App() {
   const [posts, setPosts] = useState(null);
 
   // fetch the post data upon component mounting
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch(`${baseurl}/posts`);
+
+      if (!response.ok) {
+        console.log('Unable to connect to server');
+      } else {
+        console.log('connceted to server');
+        const parsed = await response.json();
+        setPosts(parsed);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  
+  };
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const data = await fetch("http://localhost:3000/posts");
-      console.log(data);
-      const parsed = await data.json();
-      setPosts(parsed);
-    };
     fetchPosts();
   }, [])
 
@@ -43,8 +57,9 @@ function App() {
       <Routes>
         <Route index element={< Home posts={posts} />} />
         <Route path="login" element={< Login />} />
-        <Route path="register" element={< Register />} />
-        <Route path="posts/:id" element={< Post posts={posts} />} />
+        <Route path="register" element={< UserRegister />} />
+        <Route path="posts/:id" element={< PostEdit posts={posts} />} />
+        <Route path="/posts/create" element={ <PostCreate fetchPosts={fetchPosts} /> } />
       </Routes>
     </div>
   )

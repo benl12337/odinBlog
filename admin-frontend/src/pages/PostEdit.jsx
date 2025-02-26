@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
-import './Post.css';
+import './PostEdit.css';
 
 export default function Post({ posts }) {
 
