@@ -16,13 +16,14 @@ const postController = {
     // POST ROUTES
     createPost: async (req, res, next) => {
         // get the request body
-        const { title, content } = req.body;
+        const { title, content, status } = req.body;
         const testUser = {
             id: 1
         }
         const post = {
             title,
             text: content,
+            status: status,
             authorId: 1,
         }
         await db.createPost(testUser.id, post);

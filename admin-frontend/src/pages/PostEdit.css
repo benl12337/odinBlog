@@ -1,5 +1,6 @@
 .post {
     width: 100%;
+    padding: 0;
     input {
         font-size: 1rem;
     }
@@ -14,9 +15,18 @@ form {
     border:  1px solid rgb(239, 235, 235);
 }
 
+.form-title, .form-body {
+    padding: 10px 200px;
+}
+
 .form-title {
     border-bottom: 1px solid rgb(239, 235, 235);
-    
+}
+
+.tab {
+    height: 20px;
+    background: #1e7be4;
+    border-radius: 5px 5px 0 0;
 }
 
 

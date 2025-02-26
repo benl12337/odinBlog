@@ -45,6 +45,7 @@ const db = {
                 title: postContent.title,
                 text: postContent.text,
                 authorId: userId,
+                status: postContent.status,
             }
         })
     },

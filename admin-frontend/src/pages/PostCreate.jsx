@@ -15,8 +15,7 @@ export default function PostCreate( {fetchPosts} ) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // call a fetch to make the post
-        
+        // fetch posts
         try {
             await fetch(`${baseurl}/posts`, {
                 method: "POST",

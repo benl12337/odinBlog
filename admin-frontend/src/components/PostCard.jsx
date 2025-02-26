@@ -1,5 +1,7 @@
 import './PostCard.css'
 import { formatDistance } from 'date-fns'
+import editImg from '../assets/edit.svg'
+import deleteImg from '../assets/delete.svg'
 
 
 export default function PostCard({ post }) {
@@ -18,7 +20,11 @@ export default function PostCard({ post }) {
                             <div className='draft tag'>Draft</div> : <div className='published tag'>Published</div>
                     }
                     <a href={'posts/' + post.id}>
-                        <button>Edit</button></a>
+                        <img src={editImg} />
+                    </a>
+                    <a href={'posts/delete' + post.id}>
+                        <img src={deleteImg} />
+                    </a>
                 </div>
             </div>
             <div className='postcard-content'>{post.text}</div>
