@@ -37,7 +37,7 @@ function App() {
       if (!response.ok) {
         console.log('Unable to connect to server');
       } else {
-        console.log('connceted to server');
+        console.log('fetched all posts....');
         const parsed = await response.json();
         setPosts(parsed);
       }

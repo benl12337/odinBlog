@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { Navigate } from "react-router";
+import { useNavigate } from "react-router";
 const baseurl = import.meta.env.VITE_BASE_URL // create post route
 
 export default function PostCreate( {fetchPosts} ) {
 
+    const navigate = useNavigate();
+
     const [data, setData] = useState({
         title: '',
-        content: ''
+        content: '',
+        status: 'DRAFT',
     });
 
     const handleSubmit = async (e) => {
@@ -15,7 +18,7 @@ export default function PostCreate( {fetchPosts} ) {
         // call a fetch to make the post
         
         try {
-            fetch(`${baseurl}/posts`, {
+            await fetch(`${baseurl}/posts`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
@@ -23,14 +26,21 @@ export default function PostCreate( {fetchPosts} ) {
         } catch (err) {
             console.error(err);
         }
-
-        fetchPosts();
+        await fetchPosts();
+        navigate("/");
     };
 
     const handleChange = (e) => {
         setData({
             ...data,
             [e.target.name]: e.target.value,
+        })
+    };
+
+    const toggleCheckbox = () => {
+        setData({
+            ...data,
+            status: data.status === 'DRAFT' ? 'PUBLISHED' : 'DRAFT',
         })
     };
 
@@ -43,6 +53,8 @@ export default function PostCreate( {fetchPosts} ) {
                 <input type="text" name="content" value={data.content} onChange={handleChange} />
                 <p>{JSON.stringify(data)}</p>
                 <p>{baseurl}</p>
+                <label htmlFor="status">Publish post?</label>
+                <input name='status' type='checkbox' value={data.status} onChange={toggleCheckbox}/>
                 <button>Create</button>
             </form>
         </>
