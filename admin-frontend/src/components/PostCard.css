@@ -7,6 +7,7 @@
 
 .postcard-header {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     border-bottom: 1px solid rgb(239, 235, 235);
     padding: 10px 20px;
@@ -14,21 +15,21 @@
     font-weight: bolder;
 
     .tag {
-        font-size: 0.75;
+        font-size: 0.75rem;
+        font-weight: bolder;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
         font-weight: lighter;
-        margin: 0px 20px;
-        padding: 4px 20px;
-        border-radius: 5px;
+        border-radius: 3px;
     }
 
     .draft {
         color: white;
-        background: #e955ac;
-        margin: 0px 10px;
+        background: #929292;
     }
 
     .published {
-        margin: 0px 10px;
         color: white;
         background: #1e7be4;
     }
@@ -43,6 +44,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 30px;
 }
 
 .date {
@@ -62,7 +64,7 @@
 .header-tags {
     display: flex;
     align-items: center;
-
+    max-height: 30px;
     div,
     button {
         max-height: 35px;
@@ -93,4 +95,14 @@
     padding: 20px;
     font-size: 0.9rem;
     text-align: left;
+}
+
+.header-row1 {
+    padding: 0;
+    width: fit-content;
+}
+
+.header-row2 {
+    display: flex;
+    justify-content: space-between;
 }

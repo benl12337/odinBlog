@@ -21,6 +21,9 @@ const db = {
                 _count: {
                     select: { comments: true },
                 }
+            },
+            orderBy: {
+                posted: 'desc',
             }
         });
         const formatted = await posts.map((post)=>({
