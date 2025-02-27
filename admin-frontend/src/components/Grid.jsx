@@ -1,4 +1,5 @@
 import PostCard from "./PostCard"
+import './Grid.css'
 
 export default function Grid({posts}) {
 
@@ -6,7 +7,7 @@ export default function Grid({posts}) {
 
 
     return (
-        <div className="Grid">
+        <div className="Grid scrollable-div">
             {
                 posts && posts.map((post)=>{
                     return < PostCard post={post} key={post.id} />

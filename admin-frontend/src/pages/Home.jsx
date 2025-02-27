@@ -7,15 +7,21 @@ export default function App({ posts }) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleChange = (e) => {
-        setSearchTerm(e.target.value);
+        const value = e.target.value;
+        setSearchTerm(value);
         console.log(searchTerm);
-        searchTerm === '' ? setFilteredPosts(posts) : setFilteredPosts([...posts].filter((post) => post.text.includes(searchTerm)));
+
+        if (value.trim() === "") {
+            setFilteredPosts(posts)
+        } else {
+            setFilteredPosts([...posts].filter((post) => post.text.toLowerCase().includes(searchTerm.toLowerCase())))
+        }
     }
 
     return (
-        <>
-            <h1>Posts</h1><input type="text" onChange={handleChange} value={searchTerm} />
+        <div className="content-container">
+            <input type="text" onChange={handleChange} value={searchTerm} placeholder="Search posts" />
             <Grid posts={filteredPosts} />
-        </>
+        </div>
     )
 }

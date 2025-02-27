@@ -42,6 +42,7 @@
 .postcard-title {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .date {
@@ -78,10 +79,12 @@
         display: flex;
         transition: 100ms ease;
         margin: 0px 5px;
+        padding: 5px;
+        border-radius: 10px;
     }
 
     img:hover {
-        transform: scale(1.05);
+        background: rgb(206, 202, 202);
         cursor: pointer;
     }
 }
@@ -89,4 +92,5 @@
 .postcard-content {
     padding: 20px;
     font-size: 0.9rem;
+    text-align: left;
 }

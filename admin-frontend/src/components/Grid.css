@@ -1,0 +1,5 @@
+.scrollable-div {
+    overflow: auto;
+    height: 90vh;
+    scrollbar-color: rgb(240, 240, 240) white;
+  }
