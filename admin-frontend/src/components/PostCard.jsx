@@ -10,8 +10,8 @@ export default function PostCard({ post }) {
         <div className="postcard">
             <div className="postcard-header">
                 <div className='postcard-title'>
-                    <div className="title">{post.title}</div>
-                    <div className="date">{formatDistance(post.posted, new Date(), { addSuffix: true })}</div>
+                    <div className="title"><h4>{post.title}</h4></div>
+                    <div className="date"><p>{formatDistance(post.posted, new Date(), { addSuffix: true })}</p></div>
                 </div>
 
                 <div className='header-tags'>
