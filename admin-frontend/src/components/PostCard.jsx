@@ -22,10 +22,10 @@ export default function PostCard({ post }) {
 
                 <div className='header-tags'>
                     <a href={'posts/' + post.id}>
-                        <img src={editImg} />
+                        <img className="edit-img" src={editImg} />
                     </a>
                     <a href={'posts/delete' + post.id}>
-                        <img src={deleteImg} />
+                        <img className="delete-img" src={deleteImg} />
                     </a>
                 </div></div>
             </div>

@@ -12,25 +12,6 @@ import PostCreate from "./pages/PostCreate"
 import './App.css'
 const baseurl = import.meta.env.VITE_BASE_URL // API base url
 
-function Sidebar() {
-  return (
-    <div className="sidebar">
-      <div className="nav">
-      <nav>
-        <ul>
-          <Link to="/posts/create"><div className="link create-btn"><li>Create Post</li></div></Link>
-          <Link to="/"><div className="link"><li>Home</li></div></Link>
-        </ul>
-      </nav>
-    </div>
-    <div className="filters">
-      <div className="filter-row"><label>Published</label><input type="checkbox" checked /></div>
-      <div className="filter-row"><label>Draft</label><input type="checkbox" checked /></div>
-    </div>
-    </div>
-  )
-}
-
 function App() {
 
   const [posts, setPosts] = useState(null);
@@ -59,7 +40,6 @@ function App() {
 
   return (
     <div className="page">
-      < Sidebar />
       <Routes>
         <Route index element={< Home posts={posts} />} />
         <Route path="login" element={< Login />} />
