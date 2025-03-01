@@ -16,7 +16,7 @@ datasource db {
 model User {
   id Int @id @default(autoincrement())
   role Role @default(USER)
-  username String
+  username String @unique
   hash String
   joined DateTime @default(now())
   posts Post[]

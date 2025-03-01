@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const postController = require('../controllers/postController');
+const passport = require('passport');
+require("../config/passport")
 
 // GET ROUTES
 // get all posts
-router.get('/', postController.getAllPosts);
+router.get('/', passport.authenticate("jwt", { session: false }), postController.getAllPosts);
 
 // get specific post
 router.get('/:postId', postController.getPost);

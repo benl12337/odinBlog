@@ -19,7 +19,9 @@ function App() {
   // fetch the post data upon component mounting
   const fetchPosts = async () => {
     try {
-      const response = await fetch(`${baseurl}/posts`);
+      const response = await fetch(`${baseurl}/posts`, {
+        
+      });
 
       if (!response.ok) {
         console.log('Unable to connect to server');
@@ -45,7 +47,7 @@ function App() {
         <Route path="login" element={< Login />} />
         <Route path="register" element={< UserRegister />} />
         <Route path="posts/:id" element={< PostEdit posts={posts} />} />
-        <Route path="/posts/create" element={<PostCreate fetchPosts={fetchPosts} />} />
+        <Route path="/create" element={<PostCreate fetchPosts={fetchPosts} />} />
       </Routes>
     </div>
   )

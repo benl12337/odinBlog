@@ -34,7 +34,7 @@ export default function Grid({ posts }) {
                 <div className="buttons"><button name="all" className={filter == "all" ? "active" : ""}  onClick={handleClick}>All</button>
                 <button name="published" className={filter == "published" ? "active" : ""} onClick={handleClick}>Published</button>
                 <button name="draft" className={filter == "draft" ? "active" : ""} onClick={handleClick}>Drafts</button></div>
-                <button className="create">Create Post</button>
+                <a href="/create"><button className="create">Create Post</button></a>
             </div>
             <div className="scrollable-div">
 

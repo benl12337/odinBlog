@@ -4,15 +4,32 @@ const utils = require('../lib/passwordUtils');
 const prisma = new PrismaClient();
 
 const db = {
-    createUser: async (username, password) => {
+    createUser: async (username, password, secret) => {
         // generate hashed password
         const hashedPassword = await utils.genHash(password);
         await prisma.user.create({
             data: {
                 username: username,
                 hash: hashedPassword,
+                role: secret === process.env.STAFF_PW ? 'ADMIN' : 'USER'
             },
         });
+    },
+    getUserById: async (userId) => {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: userId,
+            }
+        })
+        return user;
+    },
+    getUserByName: async (username) => {
+        const user = await prisma.user.findUnique({
+            where: {
+                username: username,
+            }
+        })
+        return user;
     },
     getAllPosts: async () => {
         // get all posts
