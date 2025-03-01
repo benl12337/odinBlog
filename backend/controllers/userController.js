@@ -1,6 +1,6 @@
 const db = require('../db/queries');
 const { genHash, verifyPw } = require('../lib/passwordUtils');
-const jwt = require('jsonwebtoken'); 
+const jwt = require('jsonwebtoken');
 
 const userController = {
     login: async (req, res, next) => {
@@ -15,11 +15,13 @@ const userController = {
             if (!pwMatches) return res.status(400).json({ message: "incorrect password" })
 
             // generate jwt (contains user id and role information)
-            const accessToken = jwt.sign({
+            const payload = {
                 id: user.id,
                 role: user.role
-            }, process.env.ACCESS_TOKEN_SECRET);
-            res.json({ accessToken });
+            };
+            const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+
+            res.json({ message: "successfully logged in!", token: accessToken }); 
 
         } catch (error) {
             console.log(error);

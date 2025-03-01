@@ -1,6 +1,7 @@
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../components/AuthContext";
 const baseurl = import.meta.env.VITE_BASE_URL // API base url
 
 
@@ -12,15 +13,14 @@ export default function App() {
         username: '',
         password: ''
     });
-
+    const { login } = useContext(AuthContext);
     const [errorMsg, setErrorMsg] = useState('');
 
     const handleChange = (e) => {
         setData({
             ...data,
             [e.target.name]: e.target.value,
-        }
-        )
+        })
     };
 
     const handleSubmit = async (e) => {
@@ -42,6 +42,7 @@ export default function App() {
             const json = await response.json(); //returns access token
             // save the token to storage 
             console.log(json);
+            login(json.token);
             setErrorMsg('Success! Redirecting...');
             navigate("/");
         } catch (error) {
