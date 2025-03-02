@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import UserRegister from './pages/UserRegister'
 import PostEdit from "./pages/PostEdit"
 import PostCreate from "./pages/PostCreate"
+import Logout from "./pages/Logout"
 import './App.css'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="register" element={< UserRegister />} />
         <Route path="posts/:id" element={< PostEdit />} />
         <Route path="/create" element={<PostCreate />} />
+        <Route path="/logout" element={ <Logout /> } />
       </Routes>
     </div>
   )

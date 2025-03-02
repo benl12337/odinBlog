@@ -24,13 +24,18 @@ export default function PostCreate( {fetchPosts} ) {
         // POST the new article to the api
         try {
 
+            const formattedData = {
+                ...data,
+                status: data.status ? 'PUBLISHED' : 'DRAFT',
+            }
+
             const response = await fetch(`${baseurl}/posts`, {
                 method: "POST",
                 headers: { 
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
                  },
-                body: JSON.stringify(data)
+                body: JSON.stringify(formattedData)
             });
             
             if (!response.ok) {
