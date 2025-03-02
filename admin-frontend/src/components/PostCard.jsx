@@ -2,6 +2,7 @@ import './PostCard.css'
 import { formatDistance } from 'date-fns'
 import editImg from '../assets/edit.svg'
 import deleteImg from '../assets/delete.svg'
+import commentImg from '../assets/comment.svg';
 
 
 export default function PostCard({ post }) {
@@ -24,12 +25,13 @@ export default function PostCard({ post }) {
                     <a href={'posts/' + post.id}>
                         <img className="edit-img" src={editImg} />
                     </a>
-                    <a href={'posts/delete' + post.id}>
+                    <a href={'posts/delete/' + post.id}>
                         <img className="delete-img" src={deleteImg} />
                     </a>
                 </div></div>
             </div>
             <div className='postcard-content'>{post.text}</div>
+            <div className="comments"><img src={commentImg}/>{post.commentCount}</div>
         </div>
     )
 }

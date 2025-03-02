@@ -9,12 +9,12 @@ const baseurl = import.meta.env.VITE_BASE_URL // API base url
 export default function Grid() {
 
     // set filtered posts and current setting
-    
-    const [filter, setFilter] = useState("all");
-    const [state, setState] = useState("loaded");
-    const [posts, setPosts] = useState(null);
-    const [filteredPosts, setFilteredPosts] = useState(null);
-    const { token } = useContext(AuthContext)
+    const [filter, setFilter] = useState("all"); // choose post view
+    const [state, setState] = useState("loaded"); // set animation state
+    const [posts, setPosts] = useState(null); // set all posts
+    const [filteredPosts, setFilteredPosts] = useState(null); // set filtered posts
+    const { token } = useContext(AuthContext) // set JSONWebToken
+
 ;    // fetch the post data upon component mounting
     const fetchPosts = async () => {
         try {
@@ -29,8 +29,11 @@ export default function Grid() {
                 console.log('Unable to connect to server');
             } else {
                 console.log('fetched all posts....');
+                
                 const parsed = await response.json();
                 setPosts(parsed);
+                console.log('the items are: ', parsed);
+                setFilteredPosts(parsed);
             }
         } catch (err) {
             console.log(err);
@@ -42,7 +45,9 @@ export default function Grid() {
         fetchPosts();
     }, [])
 
+    // handle filtering of posts
     const handleClick = (e) => {
+
         const selectedFilter = e.target.name;
         setFilter(selectedFilter);
         setState("loading")

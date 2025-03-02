@@ -10,6 +10,7 @@ const opts = {
 passport.use(
     new Strategy(opts, async (payload, done) => {
         try {
+            console.log(payload);
             const user = await db.getUserById(payload.id);
             console.log('this is the username: ', user);
             if (user) return done(null,user);

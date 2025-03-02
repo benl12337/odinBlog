@@ -1,32 +1,49 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../components/AuthContext";
+import './PostCreate.css';
+import Switch from "../components/Switch";
 const baseurl = import.meta.env.VITE_BASE_URL // create post route
 
 export default function PostCreate( {fetchPosts} ) {
 
+    
+    const { token } = useContext(AuthContext)
     const navigate = useNavigate();
 
     const [data, setData] = useState({
         title: '',
         content: '',
-        status: 'DRAFT',
+        status: true,
     });
 
     const handleSubmit = async (e) => {
+        
         e.preventDefault();
 
-        // fetch posts
+        // POST the new article to the api
         try {
-            await fetch(`${baseurl}/posts`, {
+
+            const response = await fetch(`${baseurl}/posts`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                 },
                 body: JSON.stringify(data)
             });
+            
+            if (!response.ok) {
+                console.log('Could not create resource');
+            } else {
+                navigate("/");
+            }
+
+
+
         } catch (err) {
             console.error(err);
         }
-        await fetchPosts();
-        navigate("/");
     };
 
     const handleChange = (e) => {
@@ -39,7 +56,7 @@ export default function PostCreate( {fetchPosts} ) {
     const toggleCheckbox = () => {
         setData({
             ...data,
-            status: data.status === 'DRAFT' ? 'PUBLISHED' : 'DRAFT',
+            status: !data.status,
         })
     };
 
@@ -50,10 +67,8 @@ export default function PostCreate( {fetchPosts} ) {
                 <input type="text" name="title" value={data.title} onChange={handleChange} />
                 <label>Content:</label>
                 <input type="text" name="content" value={data.content} onChange={handleChange} />
-                <p>{JSON.stringify(data)}</p>
-                <p>{baseurl}</p>
                 <label htmlFor="status">Publish post?</label>
-                <input name='status' type='checkbox' value={data.status} onChange={toggleCheckbox}/>
+                <Switch isOn={data.status} handleToggle={toggleCheckbox} />
                 <button>Create</button>
             </form>
         </>

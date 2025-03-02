@@ -13,7 +13,7 @@ router.get('/:postId', postController.getPost);
 
 // POST ROUTES
 // create a new post
-router.post('/', postController.createPost);
+router.post('/', passport.authenticate("jwt", { session: false }), postController.createPost);
 
 // PUT ROUTES
 // update a post

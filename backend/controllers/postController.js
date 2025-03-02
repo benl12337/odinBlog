@@ -1,4 +1,5 @@
 const db = require('../db/queries');
+const jwt = require('jsonwebtoken');
 
 const postController = {
 
@@ -6,6 +7,7 @@ const postController = {
     getAllPosts: async (req, res) => {
         console.log('getting all posts...');
         const posts = await db.getAllPosts();
+        console.log('posts = ', posts);
         res.json(posts);
     },
     getPost: async (req, res) => {
@@ -17,17 +19,16 @@ const postController = {
     createPost: async (req, res, next) => {
         // get the request body
         const { title, content, status } = req.body;
-        const testUser = {
-            id: 1
-        }
+        console.log('body is: ', req.body);
+        const token = req.headers;
         const post = {
             title,
             text: content,
-            status: status,
-            authorId: 1,
+            status,
+            authorId: req.user.id,
         }
-        await db.createPost(testUser.id, post);
-        next();
+       await db.createPost(req.user.id, post);
+       res.status(201).json({ message: "succesfully created post "});
     }
 }
 
