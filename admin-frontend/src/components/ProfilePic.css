@@ -7,6 +7,7 @@
     justify-content: center;
     align-items: center;
     color: white;
+    position: relative;
     p {
         margin: 0;
         padding: 0;
@@ -17,4 +18,46 @@
 
 .profile-pic:hover {
     cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0px;
+    width: 0px;
+    height: 0px;
+    background: white;
+    transition: 100ms;
+    border-radius: 10px;
+    color: black;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes scaleIn {
+    100% {
+        width: 150px;
+        height: 200px;
+    }
+}
+
+.visible {
+    animation: scaleIn 250ms ease forwards;
+}
+
+.hidden {
+    animation: scaleOut 250ms ease forwards;
+}
+
+@keyframes scaleOut {
+    0% {
+        width: 150px;
+        height: 200px;
+    }
+    100% {
+        width: 0px;
+        height: 0px;
+    }
 }
