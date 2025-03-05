@@ -67,7 +67,7 @@ export default function PostCreate( {fetchPosts} ) {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="create-post">
                 <label>Title:</label>
                 <input type="text" name="title" value={data.title} onChange={handleChange} />
                 <label>Content:</label>

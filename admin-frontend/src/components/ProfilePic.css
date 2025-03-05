@@ -47,17 +47,3 @@
     animation: scaleIn 250ms ease forwards;
 }
 
-.hidden {
-    animation: scaleOut 250ms ease forwards;
-}
-
-@keyframes scaleOut {
-    0% {
-        width: 150px;
-        height: 200px;
-    }
-    100% {
-        width: 0px;
-        height: 0px;
-    }
-}

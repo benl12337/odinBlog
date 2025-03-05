@@ -19,7 +19,7 @@ export default function ProfilePic() {
     return(
         <div className="profile-pic" onClick={handleClick}>
             <p>{letter || '/'}</p>
-            <div className={`dropdown ${visible ? 'visible' : 'hidden'}`}>
+            <div className={`dropdown ${visible ? 'visible' : ''}`}>
                 <p>Logout</p>
             </div>
         </div>
