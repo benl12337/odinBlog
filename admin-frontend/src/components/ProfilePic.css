@@ -1,0 +1,20 @@
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    background: #8464c0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    p {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        font-size: 24px;
+    }
+}
+
+.profile-pic:hover {
+    cursor: pointer;
+}

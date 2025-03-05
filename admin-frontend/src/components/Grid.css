@@ -1,38 +1,55 @@
+.container {
+  width: min(90%, 800px);
+  min-width: 600px;
+}
+
 .scrollable-div {
-    overflow: overlay;
-    padding: 0;
-    height: 80vh;
-    width: 1280px;
-    scrollbar-color: #e7e1e1 rgb(242, 242, 246);
-  }
+  overflow: overlay;
+  padding: 0;
+  height: 80vh;
+  scrollbar-color: #e7e1e1 rgb(242, 242, 246);
+  text-align: center;
 
-  .filters {
-    margin: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+  .message {
     width: 100%;
-    box-sizing: content-box;
-    button {
-        padding: 0;
-        padding-bottom: 8px;
-        font-size: 16px;
-        font-weight: 400;
-        margin-right: 48px;
-        text-align: center;
-        background: none;
-        border-radius: 0;
-        border: 2px solid transparent; /* Keeps layout stable */
-    }
+    height: 25%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 15%;
+    color: grey;
   }
+}
 
-  button.create {
-    background: rgb(77, 140, 234);
-    padding: 10px;
-    color: white;
-    border-radius: 5px;
-  }
+.filters {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  box-sizing: content-box;
 
-  button.active {
-    border-bottom: 4px solid rgb(199, 191, 191)
+  button {
+    padding: 0;
+    padding-bottom: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 48px;
+    text-align: center;
+    background: none;
+    border-radius: 0;
+    border: 2px solid transparent;
+    /* Keeps layout stable */
   }
+}
+
+button.create {
+  background: rgb(77, 140, 234);
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+}
+
+button.active {
+  border-bottom: 4px solid rgb(199, 191, 191)
+}

@@ -31,9 +31,12 @@ const db = {
         })
         return user;
     },
-    getAllPosts: async () => {
+    getAllPosts: async (userId) => {
         // get all posts
         const posts = await prisma.post.findMany({
+            where: {
+                ...(userId && { authorId: userId }), 
+            },
             include: {
                 _count: {
                     select: { comments: true },

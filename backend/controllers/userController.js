@@ -17,6 +17,7 @@ const userController = {
             // generate jwt (contains user id and role information)
             const payload = {
                 id: user.id,
+                username: user.username,
                 role: user.role
             };
             const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });

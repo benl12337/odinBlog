@@ -15,7 +15,7 @@ export default function Grid() {
     const [filteredPosts, setFilteredPosts] = useState(null); // set filtered posts
     const { token } = useContext(AuthContext) // set JSONWebToken
 
-;    // fetch the post data upon component mounting
+        ;    // fetch the post data upon component mounting
     const fetchPosts = async () => {
         try {
             const response = await fetch(`${baseurl}/posts`, {
@@ -29,7 +29,7 @@ export default function Grid() {
                 console.log('Unable to connect to server');
             } else {
                 console.log('fetched all posts....');
-                
+
                 const parsed = await response.json();
                 setPosts(parsed);
                 console.log('the items are: ', parsed);
@@ -49,18 +49,29 @@ export default function Grid() {
     const handleClick = (e) => {
 
         const selectedFilter = e.target.name;
+        let filtered = [];
         setFilter(selectedFilter);
-        setState("loading")
+        setState("loading");
 
         setTimeout(() => {
             if (selectedFilter === "all") {
                 setFilteredPosts(posts);
             } else if (selectedFilter === 'draft') {
-                setFilteredPosts(posts.filter(post => post.status === 'DRAFT'));
+                if (posts) { 
+                    filtered = posts.filter(post => post.status === 'DRAFT');
+                    setFilteredPosts(filtered);
+                } else {
+                    setFilteredPosts(null);
+                }
             } else {
-                setFilteredPosts(posts.filter(post => post.status === 'PUBLISHED'));
+                if (posts) { 
+                    filtered = posts.filter(post => post.status === 'PUBLISHED');
+                    setFilteredPosts(filtered);
+                } else {
+                    setFilteredPosts(null);
+                }
             }
-            setState("loaded")
+            setState("loaded");
         }, 550);
 
     }
@@ -75,9 +86,14 @@ export default function Grid() {
             </div>
             <div className="scrollable-div">
 
-                {state == "loading" ? < LoadingCircle message={"Loading posts..."} /> : filteredPosts && filteredPosts.map((post) => {
-                    return < PostCard post={post} key={post.id} />
-                })}
+                {
+                    state == "loading" ? < LoadingCircle message={"Loading posts..."} /> :
+                        (
+                            filteredPosts && filteredPosts.length > 0 ? filteredPosts && filteredPosts.map((post) => {
+                                return < PostCard post={post} key={post.id} />
+                            }) : <div className="message">Error fetching posts...Please try again later</div>
+                        )
+                }
             </div>
         </div>
     )

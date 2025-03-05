@@ -5,8 +5,9 @@ const postController = {
 
     // GET ROUTES
     getAllPosts: async (req, res) => {
+        const userId = req.user.id;
         console.log('getting all posts...');
-        const posts = await db.getAllPosts();
+        const posts = await db.getAllPosts(userId);
         console.log('posts = ', posts);
         res.json(posts);
     },
