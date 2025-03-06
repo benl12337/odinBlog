@@ -5,7 +5,7 @@ import './PostCreate.css';
 import Switch from "../components/Switch";
 const baseurl = import.meta.env.VITE_BASE_URL // create post route
 
-export default function PostCreate( {fetchPosts} ) {
+export default function PostCreate( ) {
 
     
     const { token } = useContext(AuthContext)

@@ -6,7 +6,7 @@ require("../config/passport")
 
 // GET ROUTES
 // get all posts
-router.get('/', passport.authenticate("jwt", { session: false }), postController.getAllPosts);
+router.get('/', clearTimeout, postController.getAllPosts);
 
 // get specific post
 router.get('/:postId', postController.getPost);
@@ -17,9 +17,7 @@ router.post('/', passport.authenticate("jwt", { session: false }), postControlle
 
 // PUT ROUTES
 // update a post
-router.put('/:postId', (req,res)=>{
-    res.send(`editing post ${req.params.postId}`);
-});
+router.put('/:postId', passport.authenticate("jwt", { session: false }), postController.editPost);
 
 // DELETE ROUTES
 // delete a post

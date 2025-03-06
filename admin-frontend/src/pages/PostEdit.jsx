@@ -1,13 +1,19 @@
 import { useParams } from "react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import TitleInput from "../components/TitleInput";
+import { useNavigate } from "react-router";
 import './PostEdit.css';
+import { AuthContext } from "../components/AuthContext";
+const baseurl = import.meta.env.VITE_BASE_URL
 
 export default function Post({ posts }) {
 
+    const { token } = useContext(AuthContext)
+    const navigate = useNavigate();
+
     const { id } = useParams();
-    const [post, setPost] = useState(null);
-    const [editingTitle, setEditingTitle] = useState(false);
+    const [post, setPost] = useState({});
+    
 
     useEffect(() => {
         if (posts) {
@@ -23,8 +29,29 @@ export default function Post({ posts }) {
         });
     };
 
-    const handleEdit = (e) => {
+    const handleEdit = async (e) => {
         e.preventDefault();
+
+        // make an api call to update the post
+        try {
+            const response = await fetch(`${baseurl}/posts/${id}`, {
+                method: "PUT",
+                headers: { 
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                 },
+                body: JSON.stringify(post)
+            });
+            
+            if (!response.ok) {
+                console.log('Could not update resource');
+            } else {
+                navigate("/");
+            }
+        } catch (err) {
+            console.error(err);
+        }
+
     }
 
 
@@ -37,7 +64,7 @@ export default function Post({ posts }) {
                 <button onClick={handleEdit} >edit</button>
             </div>
             <div className="form-body">
-                <input type='text' value={post.text} onChange={handleChange} name='content' />
+                <input type='text' value={post.text} onChange={handleChange} name='text' />
             </div>
             <button>Update</button>
         </form>

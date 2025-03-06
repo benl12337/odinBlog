@@ -30,6 +30,21 @@ const postController = {
         }
        await db.createPost(req.user.id, post);
        res.status(201).json({ message: "succesfully created post "});
+    },
+    editPost: async (req,res,next) => {
+        // get the request body
+        const { title, content, status } = req.body;
+        console.log('body is: ', req.body);
+        const token = req.headers;
+        const post = {
+            title,
+            text: content,
+            status,
+            authorId: req.user.id,
+            lastEdited: new Date(),
+        }
+       await db.createPost(req.user.id, post);
+       res.status(201).json({ message: "succesfully updated post "});
     }
 }
 
