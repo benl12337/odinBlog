@@ -40,10 +40,10 @@ export default function App() {
             }
 
             const json = await response.json(); //returns access token
+            
             // save the token to storage 
-            console.log(json);
+            console.log('logging in and this is the token: ', json.token);
             login(json.token);
-            setErrorMsg('Success! Redirecting...');
             navigate("/");
         } catch (error) {
             console.log(error)

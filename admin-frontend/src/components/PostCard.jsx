@@ -7,6 +7,9 @@ import commentImg from '../assets/comment.svg';
 
 export default function PostCard({ post }) {
 
+    const postDate = post.lastEdited ? post.lastEdited : post.posted;
+    console.log(post.posted)
+
     return (
         <div className="postcard">
             <div className="postcard-header">
@@ -18,7 +21,7 @@ export default function PostCard({ post }) {
                 </div>
                 <div className="header-row2"><div className='postcard-title'>
                     <div className="title"><h4>{post.title}</h4></div>
-                    <div className="date"><p>{formatDistance(post.posted, new Date(), { addSuffix: true })}</p></div>
+                    <div className="date"><p>{formatDistance(postDate, new Date(), { addSuffix: true })}</p></div>
                 </div>
 
                 <div className='header-tags'>

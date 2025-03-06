@@ -2,7 +2,9 @@ import { useParams } from "react-router";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router";
 import './PostEdit.css';
+import PostCard from "../components/PostCard";
 import { AuthContext } from "../components/AuthContext";
+import PostCreate from "./PostCreate";
 const baseurl = import.meta.env.VITE_BASE_URL
 
 export default function Post({ fetchPosts, posts }) {
@@ -22,14 +24,8 @@ export default function Post({ fetchPosts, posts }) {
             const foundPost = posts.find(post => post.id === Number(id));
             setPost(foundPost || {});
         }
+        console.log('drakeo', post);
     }, [id, posts]);
-
-    const handleChange = (e) => {
-        setPost({
-            ...post,
-            [e.target.name]: e.target.value,
-        });
-    };
 
     const handleEdit = async (e) => {
         
@@ -57,16 +53,13 @@ export default function Post({ fetchPosts, posts }) {
         } catch (err) {
             console.error(err);
         }
-
     }
 
 
     return (
-        post &&
-        <form className="post" onSubmit={handleEdit}>
-                <input type='text' value={post.title} onChange={handleChange} name='title' />
-                <input type='text' value={post.text} onChange={handleChange} name='text' />
-            <button>Update</button>
-        </form>
+        <div>
+            <p>Are you sure you want to delete:</p>
+            <PostCard post={post} />
+        </div>
     )
 }

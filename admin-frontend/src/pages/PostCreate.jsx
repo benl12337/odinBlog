@@ -5,9 +5,8 @@ import './PostCreate.css';
 import Switch from "../components/Switch";
 const baseurl = import.meta.env.VITE_BASE_URL // create post route
 
-export default function PostCreate( ) {
+export default function PostCreate({ fetchPosts }) {
 
-    
     const { token } = useContext(AuthContext)
     const navigate = useNavigate();
 
@@ -41,6 +40,7 @@ export default function PostCreate( ) {
             if (!response.ok) {
                 console.log('Could not create resource');
             } else {
+                fetchPosts();
                 navigate("/");
             }
 

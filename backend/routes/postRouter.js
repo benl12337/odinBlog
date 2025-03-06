@@ -6,7 +6,8 @@ require("../config/passport")
 
 // GET ROUTES
 // get all posts
-router.get('/', clearTimeout, postController.getAllPosts);
+router.get('/published', postController.getPublicPosts);
+router.get('/', passport.authenticate("jwt", { session: false }), postController.getAllPosts);
 
 // get specific post
 router.get('/:postId', postController.getPost);

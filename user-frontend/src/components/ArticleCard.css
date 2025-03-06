@@ -1,6 +1,11 @@
+.variables {
+    --background-colour: rgb(23, 23, 63);
+}
+
 .card-container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     border: 1px solid grey;
     border-radius: 5px;
     .card-title {
@@ -10,4 +15,64 @@
     .card-content {
         font-size: .75rem;
     }
+}
+
+.article-card {
+    padding: 15px;
+    box-sizing: border-box;
+    transition: 200ms ease;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    border-radius: 0px 15px 0px 15px;
+    height: 400px;
+    transition: 300ms;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.article-card:hover {
+    cursor: pointer;
+    background: rgb(28, 28, 74);
+}
+
+.card-header {
+    display: flex;
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+    .card-title {
+        width: 75%;
+        color: rgb(255, 255, 255);
+        font-size: 28px;
+        font-weight: bold;
+    }
+}
+
+.card-date {
+    text-align: left;
+    font-size: 14px;
+}
+
+.card-content {
+    margin-top: 50px;
+    text-align: left;
+    color: rgb(225, 215, 215);
+    font-weight: 600;
+}
+
+.tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    background: rgb(129, 7, 88);
+    border-radius: 0px 5px 0px 5px;
+    height: fit-content;
+    padding: 5px;
+}
+.bottom-half {
+    text-align: left;
+    color:  rgb(69, 69, 102);
+    font-weight: bolder;
 }

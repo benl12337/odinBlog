@@ -9,7 +9,7 @@ export default function App({ posts }) {
 
     return (
         <div className="content-container">
-            {token ? <Grid posts={posts} /> : <p>Please login to see posts</p>}
+            {token ? <Grid posts={ posts } /> : <p>Please login to see posts</p>}
         </div>
     )
 }

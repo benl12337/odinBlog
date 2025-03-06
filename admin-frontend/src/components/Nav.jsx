@@ -12,10 +12,14 @@ export default function Nav() {
     return (
         <div className="navbar">
             {/* Return a different set of links depending on whether or not user is authenticated */}
-            <a href="/"><h1>odin_blog</h1></a>
+            <a href="/"><h1>./odinBlog</h1></a>
             {
-                token ? <ProfilePic/> : <Link to="/login" className="login-link">Login</Link>
-            }
+                token ? <ProfilePic/> : 
+               <div>
+                 <Link to="/login" className="account-link">Login</Link>
+                 <Link to="/register" className="account-link">Register</Link>
+                </div>
+            }   
         </div>
     )
 }

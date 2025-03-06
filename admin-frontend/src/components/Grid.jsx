@@ -3,47 +3,14 @@ import { useState, useEffect, useContext } from "react"
 import LoadingCircle from "./LoadingCircle";
 import { AuthContext } from "./AuthContext";
 import './Grid.css'
-const baseurl = import.meta.env.VITE_BASE_URL // API base url
 
 
-export default function Grid() {
+export default function Grid( {posts} ) {
 
     // set filtered posts and current setting
     const [filter, setFilter] = useState("all"); // choose post view
     const [state, setState] = useState("loaded"); // set animation state
-    const [posts, setPosts] = useState(null); // set all posts
-    const [filteredPosts, setFilteredPosts] = useState(null); // set filtered posts
-    const { token } = useContext(AuthContext) // set JSONWebToken
-
-        ;    // fetch the post data upon component mounting
-    const fetchPosts = async () => {
-        try {
-            const response = await fetch(`${baseurl}/posts`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                }
-            });
-
-            if (!response.ok) {
-                console.log('Unable to connect to server');
-            } else {
-                console.log('fetched all posts....');
-
-                const parsed = await response.json();
-                setPosts(parsed);
-                console.log('the items are: ', parsed);
-                setFilteredPosts(parsed);
-            }
-        } catch (err) {
-            console.log(err);
-        }
-
-    };
-
-    useEffect(() => {
-        fetchPosts();
-    }, [])
+    const [filteredPosts, setFilteredPosts] = useState(posts);
 
     // handle filtering of posts
     const handleClick = (e) => {
@@ -75,6 +42,10 @@ export default function Grid() {
         }, 550);
 
     }
+
+    useEffect(()=>{
+        setFilteredPosts(posts);
+    }, [posts]);
 
     return (
         <div className="container">

@@ -52,6 +52,28 @@ const db = {
         }));
         return formatted;
     },
+    getAllPublishedPosts: async (userId) => {
+        // get all posts
+        const posts = await prisma.post.findMany({
+            where: {
+                status: 'PUBLISHED',
+            },
+            include: {
+                author: true,
+                _count: {
+                    select: { comments: true },
+                }
+            },
+        });
+
+        const formatted = posts.map((post)=>({
+            ...post,
+            username: post.author.username,
+            commentCount: post._count.comments,
+        }));
+
+        return formatted;
+    },
     getPost: async (postId) => {
         // get single post
         const post = await prisma.post.findUnique({
@@ -72,8 +94,16 @@ const db = {
             }
         })
     },
-    updatePost: async () => {
+    updatePost: async (postId, post) => {
         // update existing post
+        await prisma.post.update({
+            where: {
+                id: postId,
+            },
+            data: {
+                ...post
+            },
+        })
     },
     deletePost: async () => {
         // delete existing post
