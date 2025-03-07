@@ -21,7 +21,8 @@ function ArticleCard({ data }) {
                 </div>
             </div>
             <div className="bottom-half">
-                {data.commentCount} Comments
+                <i>{data.commentCount} Comments</i>
+                <p>Read More <span>{'>'}</span></p>
             </div>
         </div>
     )

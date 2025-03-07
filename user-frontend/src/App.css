@@ -1,6 +1,6 @@
 #root {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: 0 auto;
   padding: 1rem 6rem;
   box-sizing: border-box;
@@ -8,6 +8,7 @@
   background: rgb(23, 23, 63);
   color: white;
 }
+
 
 .logo {
   height: 6em;
@@ -47,4 +48,19 @@
 
 h1 {
   text-align: left;
+}
+
+.body-content {
+  width: 100%;
+  height: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-left {
+  display: flex;
+}
+
+.container-right {
+  display: flex;
 }

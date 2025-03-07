@@ -1,0 +1,17 @@
+.variables {
+    --background-colour: rgb(23, 23, 63);
+}
+
+input {
+    box-sizing: border;
+    height: 35px;
+    border-radius: 0 5px;
+    font-size: 18px;
+    padding: 0px 10px;
+    background: var(--background-colour);
+    outline: none;
+    border: none;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    color: white;
+}

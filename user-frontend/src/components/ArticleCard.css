@@ -8,6 +8,7 @@
     justify-content: space-between;
     border: 1px solid grey;
     border-radius: 5px;
+    max-height: 100%;
     .card-title {
         font-weight: bold;
         color: black;
@@ -33,7 +34,7 @@
 
 .article-card:hover {
     cursor: pointer;
-    background: rgb(28, 28, 74);
+   /* background: rgb(28, 28, 74); */
 }
 
 .card-header {
@@ -42,7 +43,7 @@
     text-align: left;
     font-size: 18px;
     .card-title {
-        width: 75%;
+        width: 80%;
         color: rgb(255, 255, 255);
         font-size: 28px;
         font-weight: bold;
@@ -74,5 +75,27 @@
 .bottom-half {
     text-align: left;
     color:  rgb(69, 69, 102);
-    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+        border-radius: 0 5px 0 5px;
+        color: white;
+        padding: 5px 50px;
+        border: 1px solid white;
+    }
+}
+
+.bottom-half span {
+    display: inline-block; /* or block */
+    transition: transform 100ms ease-in-out, background 0.3s;
+}
+
+.bottom-half:hover {
+    p {
+        background: rgb(28, 28, 72);
+    }
+    span {
+        transform: translateX(5px);
+    }
 }

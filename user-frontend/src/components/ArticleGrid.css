@@ -1,8 +1,8 @@
 .article-grid {
+    width: 90%;
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* First row pattern (3fr 1fr) */
     grid-template-rows: auto; /* Let rows grow automatically based on content */
     grid-gap: 40px;
-    width: 70%;
-    height: 50%;
+    overflow: auto;
 }
