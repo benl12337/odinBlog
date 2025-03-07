@@ -11,18 +11,19 @@ function App() {
   const [posts, setPosts] = useState(null);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [asc, setAsc] = useState(false);
+  const [state, setState] = useState('Loaded');
   const [searchTerm, setSearchTerm] = useState('');
 
   const fetchData = async () => {
     try {
       const response = await fetch("http://localhost:3000/posts/published");
       const formattedPosts = await response.json();
-      const sortedPosts = formattedPosts.sort((a,b)=>
-       new Date(b.posted) - new Date(a.posted)
+      const sortedPosts = formattedPosts.sort((a, b) =>
+        new Date(b.posted) - new Date(a.posted)
       );
       setPosts(sortedPosts);
       setFilteredPosts(sortedPosts);
-      
+
     } catch (error) {
       console.log(error);
     }
@@ -30,11 +31,27 @@ function App() {
 
   const toggleSort = () => {
     // when the sort gets clicked
-    
+    const order = !asc;
+    if (asc) {
+      const sortedPosts = posts.sort((a, b) =>
+        new Date(b.posted) - new Date(a.posted)
+      );
+      setFilteredPosts(sortedPosts);
+    } else {
+      const sortedPosts = posts.sort((a, b) =>
+        new Date(a.posted) - new Date(b.posted)
+      );
+      setFilteredPosts(sortedPosts);
+    }
+    setAsc(order);
 
-    // 
+    setState('Loading');
+    
+    setTimeout(()=>{
+      setState('Loaded');
+    }, 450)
   }
-  
+
 
   const handleChange = (e) => {
     const term = e.target.value;
@@ -55,8 +72,10 @@ function App() {
       <h1>./odinBlog</h1>
       <div className="body-content">
         <div className="container-left">
-        <Sorter onToggle={toggleSort} />
-          <ArticleGrid posts={filteredPosts} />
+          <Sorter onToggle={toggleSort} />
+          {
+            state === 'Loading' ? <p>Loading...</p> : <ArticleGrid posts={filteredPosts} />
+          }
         </div>
         <div className="container-right">
           <Search value={searchTerm} onChange={handleChange} />
