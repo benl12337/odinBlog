@@ -1,0 +1,22 @@
+.sorter {
+    text-align: left;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.arrow {
+    font-size: 18px;
+    margin: 0px 10px;
+    transition: 200ms ease;
+}
+
+
+.toggled {
+    transform: rotate(180deg);
+}
+
+.arrow:hover {
+    cursor: pointer;
+}

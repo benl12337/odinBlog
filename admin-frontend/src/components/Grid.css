@@ -50,5 +50,6 @@ button.create {
 }
 
 button.active {
-  border-bottom: 4px solid rgb(199, 191, 191)
+  border-bottom: 4px solid rgb(199, 191, 191);
+  border-radius: 0;
 }

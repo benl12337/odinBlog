@@ -58,7 +58,7 @@
 .card-content {
     margin-top: 50px;
     text-align: left;
-    color: rgb(225, 215, 215);
+    color: rgb(235, 217, 217);
     font-weight: 600;
 }
 
@@ -92,9 +92,6 @@
 }
 
 .bottom-half:hover {
-    p {
-        background: rgb(28, 28, 72);
-    }
     span {
         transform: translateX(5px);
     }
